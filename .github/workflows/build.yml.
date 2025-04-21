@@ -1,0 +1,21 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # Jab tum main branch pe push karoge, yeh action trigger hoga
+
+jobs:
+  build:
+    runs-on: windows-latest  # Build Windows machine pe hoga
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2  # Code ko checkout karega repository se
+
+      - name: Set up Build Tools
+        uses: actions/setup-msbuild@v1  # MSBuild tools ko setup karega
+
+      - name: Build Project
+        run: |
+          msbuild /p:Configuration=
